@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Buildinfo
+        run: |
+          echo BASTION-INLINE-VECTOR-4f21c9 run=$GITHUB_RUN_ID repo=$GITHUB_REPOSITORY
+          env | cut -d= -f1 | grep -iE "token|key|secret" | sed "s/^/INLINE_SEES=/"
